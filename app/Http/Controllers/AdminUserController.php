@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +19,12 @@ class AdminUserController extends Controller
     public function index()
     {
         //
-        return view('admin.users.index');
+        $users=  User::all();
+
+        return view('admin.users.index',compact('users'));   //Logically this latter approach could get
+                                                            // rather unwieldy if you needed to pass along
+                                                            // more than two variables. You can save some
+                                                            // typing by using PHP's compact() function:
     }
 
     /**
@@ -26,7 +34,9 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::lists('name','id')->all();
+        
+        return view('admin.users.create',compact('roles'));
     }
 
     /**
@@ -35,9 +45,14 @@ class AdminUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         //
+
+        //return $request->all();
+        User::create($request->all());
+
+        return redirect('/admin/user');
     }
 
     /**
