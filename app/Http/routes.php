@@ -24,4 +24,4 @@ Route::get('/admin',function (){
     return view('admin.index');
 });
 
-Route::resource('admin/user','AdminUserController');
+Route::resource('admin/users','AdminUserController');

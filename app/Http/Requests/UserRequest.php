@@ -30,7 +30,7 @@ class UserRequest extends Request
             'role_id'=>'required|integer',
             'is_active'=>'required',
             'password'=>'required',
-            'file'=>'required'
+            'photo_id'=>'required'
 
         ];
     }

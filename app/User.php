@@ -27,4 +27,8 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo('App\Role');  //class BelongsTo extends
     }
+
+    public function photo(){
+        return $this->belongsTo('App\Photo');  //class BelongsTo extends
+    }
 }
